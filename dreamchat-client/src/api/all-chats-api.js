@@ -1,12 +1,14 @@
-export const chatroomsId = 'http://localhost:5000/room/get-chatrooms'
+import { baseURL } from './root-api'
 
-export const chatroomsEmail = 'http://localhost:5000/room/get-chatroomss'
+export const chatroomsId = `${baseURL}/room/get-chatrooms`
 
-export const chatroom = 'http://localhost:5000/room/get-chatroom'
+export const chatroomsEmail = `${baseURL}/room/get-chatroomss`
+
+export const chatroom = `${baseURL}/room/get-chatroom`
 
 const uploadFormData = async ({ formData }) => {
   try {
-    const response = await fetch(`http://localhost:5000/room/send-message`, {
+    const response = await fetch(`${baseURL}/room/send-message`, {
       method: 'POST',
       body: formData,
       // Add necessary headers if required
