@@ -4,8 +4,6 @@ import ChatRoom from './pages/ChatRoom'
 import Login from './pages/Login'
 import { PrivateRoute } from './routes/PrivateRoute'
 import AllChats from './pages/AllChats'
-// import ChatRoom2 from './pages/ChatRoom2'
-// import ChatRoom3 from './pages/ChatRoom3'
 import ChatPage from './pages/ChatPage'
 import { useState } from 'react'
 import { UserAuth } from './context/AuthContext'
@@ -45,25 +43,6 @@ function App() {
               />
             }
           />
-          {/* <Route
-          //   path='chat2'
-          //   element={
-          //     <ChatRoom2
-          //       isButtonVisible={isButtonVisible}
-          //       setIsButtonVisible={setIsButtonVisible}
-          //     />
-          //   }
-          // />
-          // <Route
-          //   path='chat3'
-          //   element={
-          //     <ChatRoom3
-          //       isButtonVisible={isButtonVisible}
-          //       setIsButtonVisible={setIsButtonVisible}
-          //     />
-          //   }
-          // />
-          */}
           <Route path='chatpage' element={<ChatPage />} />
         </Route>
       </Routes>

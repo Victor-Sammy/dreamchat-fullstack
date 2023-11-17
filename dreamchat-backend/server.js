@@ -32,7 +32,7 @@ app.listen(port, () => {
   console.log(`server is running on port ${port}`)
 })
 
-const origin = ['http://localhost:5173', 'https://dreamchatbox.netlify.app']
+const origin = 'https://dreamchatbox.netlify.app'
 
 app.use(cors())
 app.use(express.json())
