@@ -47,17 +47,18 @@ const store = new MongoDBStore({
 
 //app.set('trust proxy', 1)
 app.use(cors({ origin, credentials: true }))
+app.set('trust proxy', 1)
 app.use(
   session({
     secret: `${process.env.ACCESS_TOKEN_SECRET}`,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     store: store,
-    // proxy: true,
-    // cookie: {
-    //   secure: 'auto',
-    //   sameSite: 'none',
-    // },
+    proxy: true,
+    cookie: {
+      secure: 'auto',
+      sameSite: 'none',
+    },
   })
 )
 app.use(passport.initialize())
