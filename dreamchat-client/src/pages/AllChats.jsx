@@ -6,7 +6,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { UserAuth } from '../context/AuthContext'
 import axios from 'axios'
 import { chatroomsEmail, chatroomsId } from '../api/all-chats-api'
-import NewRoom from '../components/NewRoom'
+//import NewRoom from '../components/NewRoom'
 
 const AllChats = ({
   isButtonVisible,
@@ -108,9 +108,10 @@ const AllChats = ({
             </button>
             <dialog id='my_modal_1' className='modal'>
               <div className='modal-box'>
-                <div>
-                  <NewRoom />
-                </div>
+                <h3 className='font-bold text-lg'>Hello!</h3>
+                <p className='py-4'>
+                  Press ESC key or click the button below to close
+                </p>
                 <div className='modal-action'>
                   <form method='dialog'>
                     {/* if there is a button in form, it will close the modal */}
@@ -133,9 +134,10 @@ const AllChats = ({
           </button>
           <dialog id='my_modal_1' className='modal'>
             <div className='modal-box'>
-              <div>
-                <NewRoom />
-              </div>
+              <h3 className='font-bold text-lg'>Hello!</h3>
+              <p className='py-4'>
+                Press ESC key or click the button below to close
+              </p>
               <div className='modal-action'>
                 <form method='dialog'>
                   {/* if there is a button in form, it will close the modal */}
