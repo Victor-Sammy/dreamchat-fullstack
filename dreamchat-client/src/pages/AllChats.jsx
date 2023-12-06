@@ -116,41 +116,42 @@ const AllChats = ({
                   ))}
 
                 <div>
-                  {!chatRoomsArray && (
-                    <div className='start-new-chat'>
-                      <button
-                        className='btn'
-                        onClick={() =>
-                          document.getElementById('my_modal_1').showModal()
-                        }
-                      >
-                        start new chat
-                      </button>
-                      <dialog id='my_modal_1' className='modal'>
-                        <div className='modal-box'>
-                          <NewRoom isSent={isSent} setIsSent={setIsSent} />
-                          <div className='modal-action'>
-                            <form method='dialog'>
-                              {/* if there is a button in form, it will close the modal */}
-                              <button
-                                className='btn'
-                                onClick={() => {
-                                  queryClient.invalidateQueries({
-                                    queryKey: ['chatroomsId'],
-                                  })
-                                  queryClient.invalidateQueries({
-                                    queryKey: ['chatroomsEmail'],
-                                  })
-                                }}
-                              >
-                                Close
-                              </button>
-                            </form>
+                  {!chatRoomsArray &&
+                    !isLoading(
+                      <div className='start-new-chat'>
+                        <button
+                          className='btn'
+                          onClick={() =>
+                            document.getElementById('my_modal_1').showModal()
+                          }
+                        >
+                          start new chat
+                        </button>
+                        <dialog id='my_modal_1' className='modal'>
+                          <div className='modal-box'>
+                            <NewRoom isSent={isSent} setIsSent={setIsSent} />
+                            <div className='modal-action'>
+                              <form method='dialog'>
+                                {/* if there is a button in form, it will close the modal */}
+                                <button
+                                  className='btn'
+                                  onClick={() => {
+                                    queryClient.invalidateQueries({
+                                      queryKey: ['chatroomsId'],
+                                    })
+                                    queryClient.invalidateQueries({
+                                      queryKey: ['chatroomsEmail'],
+                                    })
+                                  }}
+                                >
+                                  Close
+                                </button>
+                              </form>
+                            </div>
                           </div>
-                        </div>
-                      </dialog>
-                    </div>
-                  )}
+                        </dialog>
+                      </div>
+                    )}
                 </div>
               </div>
             </div>
