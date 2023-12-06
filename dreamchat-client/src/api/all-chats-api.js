@@ -11,7 +11,6 @@ const uploadFormData = async ({ formData }) => {
     const response = await fetch(`${baseURL}/room/send-message`, {
       method: 'POST',
       body: formData,
-      // Add necessary headers if required
     })
     const data = await response.json()
     return data
@@ -25,7 +24,6 @@ const createNewRoom = async ({ formData }) => {
     const response = await fetch(`${baseURL}/room/start-chat`, {
       method: 'POST',
       body: formData,
-      // Add necessary headers if required
     })
     const data = await response.json()
     return data

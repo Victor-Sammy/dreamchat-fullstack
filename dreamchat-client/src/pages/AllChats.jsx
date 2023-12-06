@@ -3,9 +3,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 import PreviewBox from '../components/PreviewBox'
 import '../components/chatPreview.css'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-//import { useQuery } from 'react-query';
 import { UserAuth } from '../context/AuthContext'
-//import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { chatroomsEmail, chatroomsId } from '../api/all-chats-api'
 import NewRoom from '../components/NewRoom'
@@ -103,7 +101,7 @@ const AllChats = ({
           ))}
         </div>
       )
-    } else if (!chatRoomsArray) {
+    } else if (!isLoading && !chatRoomsArray) {
       return (
         <div className=''>
           <button
@@ -114,23 +112,13 @@ const AllChats = ({
           </button>
           <dialog id='my_modal_3' className='modal'>
             <div className='modal-box'>
-              <NewRoom isSent={isSent} setIsSent={setIsSent} />
+              <div>
+                <NewRoom />
+              </div>
               <div className='modal-action'>
                 <form method='dialog'>
                   {/* if there is a button in form, it will close the modal */}
-                  <button
-                    className='btn'
-                    onClick={() => {
-                      queryClient.invalidateQueries({
-                        queryKey: ['chatroomsId'],
-                      })
-                      queryClient.invalidateQueries({
-                        queryKey: ['chatroomsEmail'],
-                      })
-                    }}
-                  >
-                    Close
-                  </button>
+                  <button className='btn'>Close</button>
                 </form>
               </div>
             </div>

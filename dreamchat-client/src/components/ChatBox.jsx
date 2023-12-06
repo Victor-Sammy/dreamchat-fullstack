@@ -5,7 +5,6 @@ import '../pages/chatroom.css'
 
 const ChatBox = ({ messages }) => {
   const messageEndRef = useRef()
-  //const [audio, setAudio] = useState()
 
   const scrollToBottom = () => {
     messageEndRef.current.scrollIntoView({ behaviour: 'smooth' })

@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import './chatPreview.css'
-//import axios from 'axios'
 import Textbox from './Textbox'
 
 const PreviewBox = ({ isSent, room }) => {

@@ -1,12 +1,12 @@
 /* eslint-disable react/prop-types */
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ChatBox from '../components/ChatBox'
 import SendMessage from '../components/SendMessage'
 import './chatroom.css'
 import axios from 'axios'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { useNavigate, useParams } from 'react-router-dom'
-import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useQuery } from '@tanstack/react-query'
 import { chatroom } from '../api/all-chats-api'
 
 const ChatRoom = ({
@@ -21,22 +21,16 @@ const ChatRoom = ({
   console.log(isSent, id)
   const [files, setFiles] = useState([])
   const [displayFiles, setDisplayFiles] = useState([])
-  //const [roomData, setRoomData] = useState([])
-  //const [loading, setLoading] = useState(false)
+
   const scrollRef = useRef(null)
   const history = useNavigate()
   const recipient = localStorage.getItem('recipient')
-  //const queryClient = useQueryClient()
 
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: 'smooth' })
     }
   }, [])
-
-  // const handleRefetch = useCallback(() => {
-  //   refetch()
-  // }, [refetch])
 
   const {
     data: roomData,
@@ -46,19 +40,10 @@ const ChatRoom = ({
     queryKey: ['room', id],
     queryFn: async () =>
       await axios.get(`${chatroom}/${id}`).then((res) => res.data),
-    // staleTime: 60000,
-    //refetchOnWindowFocus: true,
-    //refetchOnMount: true,
-    //enabled: !!id,
   })
 
   console.log(roomData)
   const roomMessages = roomData && roomData?.messages
-
-  // useEffect(() => {
-  //   //handleRefetch()
-  //   queryClient.invalidateQueries('room')
-  // }, [])
 
   const handleGoBack = () => {
     history('/allChats/chatpage')

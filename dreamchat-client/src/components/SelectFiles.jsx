@@ -1,11 +1,10 @@
 /* eslint-disable react/prop-types */
 import { FcAddImage } from 'react-icons/fc'
 import { AiTwotoneDelete } from 'react-icons/ai'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 
 const SelectFiles = ({ files, setFiles, displayFiles, setDisplayFiles }) => {
   const fileInputRef = useRef(null)
-  //const [fileType, setFileType] = useState('')
 
   const onSelectFile = async (e) => {
     const selectedFiles = []
@@ -16,10 +15,6 @@ const SelectFiles = ({ files, setFiles, displayFiles, setDisplayFiles }) => {
     })
     setDisplayFiles(selectedFiles)
     setFiles(e.target.files)
-    // for (let file of files) {
-    //   console.log(file.type)
-    //   setFileType(file.type)
-    // }
   }
 
   function deleteHandler(e) {

@@ -4,8 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createNewRoom } from '../api/all-chats-api'
 import { UserAuth } from '../context/AuthContext'
 
-const NewRoom = ({ isSent, setIsSent }) => {
-  console.log(isSent)
+const NewRoom = () => {
   const { currentUser } = UserAuth()
   const senderId = currentUser?.user?._id
 
@@ -18,7 +17,6 @@ const NewRoom = ({ isSent, setIsSent }) => {
     mutationFn: createNewRoom,
     onSuccess: (data) => {
       console.log(data)
-      setIsSent(true)
       setText('')
       setRecipientEmail('')
       queryClient.invalidateQueries({
@@ -61,7 +59,9 @@ const NewRoom = ({ isSent, setIsSent }) => {
           placeholder='Enter message'
           onChange={(e) => setText(e.target.value)}
         />
-        <button className='bg-red-400 text-white'>Send</button>
+        <button className='bg-red-400 text-white' type='submit'>
+          Send
+        </button>
       </form>
     </div>
   )
