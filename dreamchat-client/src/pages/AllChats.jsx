@@ -70,6 +70,76 @@ const AllChats = ({
     }
   }
 
+  const renderToPage = () => {
+    if (chatRoomsArray) {
+      return (
+        <div>
+          {chatRoomsArray?.map((room) => (
+            <NavLink key={room._id} to={`/allChats/${room._id}`}>
+              <div
+                key={room?._id}
+                className='dashboard-item1 xl:w-[90%]  lg:w-[90%] md:w-full h-20 bg-gray-200 hover:bg-gray-300 mb-10 rounded-xl flex items-center justify-items-center overflow-hidden px-3 xs:w-full'
+                onClick={() => {
+                  handleClick()
+                  queryClient.invalidateQueries({
+                    queryKey: ['room', room?.id],
+                  })
+                  localStorage.setItem('recipient', room.to)
+                }}
+              >
+                <div className='flex gap-5 w-full'>
+                  <span className='rounded-full bg-orange-400 w-8 h-8 flex items-center justify-center text-xl'>
+                    {room?.to[0]}
+                  </span>
+                  <PreviewBox
+                    key={room._id}
+                    room={room}
+                    isSent={isSent}
+                    setIsSent={setIsSent}
+                  />
+                </div>
+              </div>
+            </NavLink>
+          ))}
+        </div>
+      )
+    } else if (!chatRoomsArray) {
+      return (
+        <div className=''>
+          <button
+            className='btn'
+            onClick={() => document.getElementById('my_modal_3').showModal()}
+          >
+            start new chat
+          </button>
+          <dialog id='my_modal_3' className='modal'>
+            <div className='modal-box'>
+              <NewRoom isSent={isSent} setIsSent={setIsSent} />
+              <div className='modal-action'>
+                <form method='dialog'>
+                  {/* if there is a button in form, it will close the modal */}
+                  <button
+                    className='btn'
+                    onClick={() => {
+                      queryClient.invalidateQueries({
+                        queryKey: ['chatroomsId'],
+                      })
+                      queryClient.invalidateQueries({
+                        queryKey: ['chatroomsEmail'],
+                      })
+                    }}
+                  >
+                    Close
+                  </button>
+                </form>
+              </div>
+            </div>
+          </dialog>
+        </div>
+      )
+    }
+  }
+
   return (
     <>
       <div className='allChats lg:w-[30%] xs:w-full block'>
@@ -86,72 +156,7 @@ const AllChats = ({
               <div>{isLoading && 'Loading'}</div>
               <div>{isError && `Error fetching data`}</div>
               <div className='s-items fixed xs:w-[90%] md:w-[90%] lg:w-[30%]'>
-                {chatRoomsArray &&
-                  chatRoomsArray?.map((room) => (
-                    <NavLink key={room._id} to={`/allChats/${room._id}`}>
-                      <div
-                        key={room?._id}
-                        className='dashboard-item1 xl:w-[90%]  lg:w-[90%] md:w-full h-20 bg-gray-200 hover:bg-gray-300 mb-10 rounded-xl flex items-center justify-items-center overflow-hidden px-3 xs:w-full'
-                        onClick={() => {
-                          handleClick()
-                          queryClient.invalidateQueries({
-                            queryKey: ['room', room?.id],
-                          })
-                          localStorage.setItem('recipient', room.to)
-                        }}
-                      >
-                        <div className='flex gap-5 w-full'>
-                          <span className='rounded-full bg-orange-400 w-8 h-8 flex items-center justify-center text-xl'>
-                            {room?.to[0]}
-                          </span>
-                          <PreviewBox
-                            key={room._id}
-                            room={room}
-                            isSent={isSent}
-                            setIsSent={setIsSent}
-                          />
-                        </div>
-                      </div>
-                    </NavLink>
-                  ))}
-
-                <div>
-                  {!chatRoomsArray && !isLoading && (
-                    <div className='start-new-chat'>
-                      <button
-                        className='btn'
-                        onClick={() =>
-                          document.getElementById('my_modal_1').showModal()
-                        }
-                      >
-                        start new chat
-                      </button>
-                      <dialog id='my_modal_1' className='modal'>
-                        <div className='modal-box'>
-                          <NewRoom isSent={isSent} setIsSent={setIsSent} />
-                          <div className='modal-action'>
-                            <form method='dialog'>
-                              {/* if there is a button in form, it will close the modal */}
-                              <button
-                                className='btn'
-                                onClick={() => {
-                                  queryClient.invalidateQueries({
-                                    queryKey: ['chatroomsId'],
-                                  })
-                                  queryClient.invalidateQueries({
-                                    queryKey: ['chatroomsEmail'],
-                                  })
-                                }}
-                              >
-                                Close
-                              </button>
-                            </form>
-                          </div>
-                        </div>
-                      </dialog>
-                    </div>
-                  )}
-                </div>
+                {renderToPage()}
               </div>
             </div>
           )}
