@@ -101,7 +101,7 @@ const AllChats = ({
           ))}
         </div>
       )
-    } else if (!isLoading && !chatRoomsArray) {
+    } else if (!allChatroomsId || !allChatroomsEmail) {
       return (
         <div className=''>
           <button
