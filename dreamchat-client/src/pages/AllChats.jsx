@@ -6,7 +6,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { UserAuth } from '../context/AuthContext'
 import axios from 'axios'
 import { chatroomsEmail, chatroomsId } from '../api/all-chats-api'
-//import NewRoom from '../components/NewRoom'
+import NewRoom from '../components/NewRoom'
 
 const AllChats = ({
   isButtonVisible,
@@ -99,21 +99,42 @@ const AllChats = ({
               </div>
             </NavLink>
           ))}
+          <div className=''>
+            <button
+              className='btn'
+              onClick={() => document.getElementById('my_modal_3').showModal()}
+            >
+              start new chat
+            </button>
+            <dialog id='my_modal_3' className='modal'>
+              <div className='modal-box'>
+                <div>
+                  <NewRoom />
+                </div>
+                <div className='modal-action'>
+                  <form method='dialog'>
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className='btn'>Close</button>
+                  </form>
+                </div>
+              </div>
+            </dialog>
+          </div>
         </div>
       )
-    } else if (!allChatroomsId || !allChatroomsEmail) {
+    } else {
       return (
         <div className=''>
           <button
             className='btn'
-            onClick={() => document.getElementById('my_modal_3').showModal()}
+            onClick={() => document.getElementById('my_modal_1').showModal()}
           >
             start new chat
           </button>
-          <dialog id='my_modal_3' className='modal'>
+          <dialog id='my_modal_1' className='modal'>
             <div className='modal-box'>
               <div>
-                <p>Create new room</p>
+                <NewRoom />
               </div>
               <div className='modal-action'>
                 <form method='dialog'>
