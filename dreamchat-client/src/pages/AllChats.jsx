@@ -4,12 +4,11 @@ import PreviewBox from '../components/PreviewBox'
 import '../components/chatPreview.css'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 //import { useQuery } from 'react-query';
-//import PreviewMessage from '../components/PreviewMessage'
 import { UserAuth } from '../context/AuthContext'
 //import { useEffect, useState } from 'react'
-//import { getChatRoomsByEmail, getChatRoomsById } from '../api/all-chats-api'
 import axios from 'axios'
 import { chatroomsEmail, chatroomsId } from '../api/all-chats-api'
+import NewRoom from '../components/NewRoom'
 
 const AllChats = ({
   isButtonVisible,
@@ -19,12 +18,10 @@ const AllChats = ({
 }) => {
   console.log(isButtonVisible)
   const { currentUser } = UserAuth()
-  console.log(currentUser)
+
   const userID = currentUser ? currentUser?.user?._id : ''
   const userEmail = currentUser ? currentUser?.user?.email : ''
-  console.log(userID)
-  // const [chatRooms, setChatRooms] = useState([])
-  // const [chatRoomss, setChatRoomss] = useState([])
+
   const queryClient = useQueryClient()
 
   const {
@@ -72,8 +69,7 @@ const AllChats = ({
       window.removeEventListener('resize', handleResize)
     }
   }
-  // const { currentUser } = UserAuth()
-  // console.log(currentUser)
+
   return (
     <>
       <div className='allChats lg:w-[30%] xs:w-full block'>
@@ -90,7 +86,7 @@ const AllChats = ({
               <div>{isLoading && 'Loading'}</div>
               <div>{isError && `Error fetching data`}</div>
               <div className='s-items fixed xs:w-[90%] md:w-[90%] lg:w-[30%]'>
-                {chatRoomsArray &&
+                {chatRoomsArray ? (
                   chatRoomsArray?.map((room) => (
                     <NavLink key={room._id} to={`/allChats/${room._id}`}>
                       <div
@@ -117,7 +113,42 @@ const AllChats = ({
                         </div>
                       </div>
                     </NavLink>
-                  ))}
+                  ))
+                ) : (
+                  <div className='start-new-chat'>
+                    <button
+                      className='btn'
+                      onClick={() =>
+                        document.getElementById('my_modal_1').showModal()
+                      }
+                    >
+                      start new chat
+                    </button>
+                    <dialog id='my_modal_1' className='modal'>
+                      <div className='modal-box'>
+                        <NewRoom isSent={isSent} setIsSent={setIsSent} />
+                        <div className='modal-action'>
+                          <form method='dialog'>
+                            {/* if there is a button in form, it will close the modal */}
+                            <button
+                              className='btn'
+                              onClick={() => {
+                                queryClient.invalidateQueries({
+                                  queryKey: ['chatroomsId'],
+                                })
+                                queryClient.invalidateQueries({
+                                  queryKey: ['chatroomsEmail'],
+                                })
+                              }}
+                            >
+                              Close
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </dialog>
+                  </div>
+                )}
               </div>
             </div>
           )}

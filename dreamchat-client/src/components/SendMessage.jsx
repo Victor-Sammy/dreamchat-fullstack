@@ -2,7 +2,6 @@
 import { useState } from 'react'
 import { UserAuth } from '../context/AuthContext'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-//import axios from 'axios'
 import { uploadFormData } from '../api/all-chats-api'
 import SelectFiles from './SelectFiles'
 
@@ -12,7 +11,6 @@ const SendMessage = ({
   files,
   setFiles,
   RoomID,
-  //getRoom,
   isSent,
   setIsSent,
 }) => {
@@ -57,41 +55,11 @@ const SendMessage = ({
     console.log(files)
 
     createMessageMutation.mutate({ formData })
-
-    //const params = new URLSearchParams(formData).toString()
-    // await axios
-    //   .post(`http://localhost:5000/room/send-message`, formData)
-    //   .then((res) => {
-    //     console.log(res.data)
-    //     getRoom()
-    //     setIsSent(true)
-    //     setValue('')
-    //     setSelectedImages(null)
-    //     //     setTimeout(() => {
-    //     //       setIsSent(false)
-    //     //     }, 3000)
-    //     //     console.log(isSent)
-    //   })
-    // console.log(value, RoomID, userID, selectedImages, selectedImages.name)
-    // console.log(formData)
   }
 
   if (createMessageMutation.isPending) {
     return <div>Loading...</div>
   }
-
-  // if (isError) {
-  //   return <div>Error sending data</div>
-  // }
-
-  // if (isSuccess) {
-  //   queryClient.invalidateQueries({
-  //     queryKey: ['room', RoomID],
-  //   })
-  //   setIsSent(true)
-  //   setValue('')
-  //   setSelectedImages([])
-  // }
 
   return (
     <div className='bg-slate-100 fixed right-0 bottom-0 lg:w-[70%] md:w-[100%] xs:w-[100%] py-8 shadow-sm shadow-gray-500 flex items-center justify-items-center xs:px-s md:px-0 lg:px-0 z-20'>

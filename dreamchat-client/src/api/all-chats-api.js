@@ -20,4 +20,18 @@ const uploadFormData = async ({ formData }) => {
   }
 }
 
-export { uploadFormData }
+const createNewRoom = async ({ formData }) => {
+  try {
+    const response = await fetch(`${baseURL}/room/start-chat`, {
+      method: 'POST',
+      body: formData,
+      // Add necessary headers if required
+    })
+    const data = await response.json()
+    return data
+  } catch (error) {
+    throw new Error('Error creating new room: ' + error.message)
+  }
+}
+
+export { uploadFormData, createNewRoom }
