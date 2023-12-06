@@ -6,7 +6,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { UserAuth } from '../context/AuthContext'
 import axios from 'axios'
 import { chatroomsEmail, chatroomsId } from '../api/all-chats-api'
-import NewRoom from '../components/NewRoom'
+//import NewRoom from '../components/NewRoom'
 
 const AllChats = ({
   isButtonVisible,
@@ -113,7 +113,7 @@ const AllChats = ({
           <dialog id='my_modal_3' className='modal'>
             <div className='modal-box'>
               <div>
-                <NewRoom />
+                <p>Create new room</p>
               </div>
               <div className='modal-action'>
                 <form method='dialog'>
