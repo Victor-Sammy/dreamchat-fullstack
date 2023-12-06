@@ -102,11 +102,11 @@ const AllChats = ({
           <div className=''>
             <button
               className='btn'
-              onClick={() => document.getElementById('my_modal_3').showModal()}
+              onClick={() => document.getElementById('my_modal_1').showModal()}
             >
               start new chat
             </button>
-            <dialog id='my_modal_3' className='modal'>
+            <dialog id='my_modal_1' className='modal'>
               <div className='modal-box'>
                 <div>
                   <NewRoom />
