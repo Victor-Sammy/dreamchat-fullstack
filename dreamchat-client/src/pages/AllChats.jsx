@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import PreviewBox from '../components/PreviewBox'
 import '../components/chatPreview.css'
@@ -70,6 +70,12 @@ const AllChats = ({
     }
   }
 
+  useEffect(() => {
+    if (modalRef.current) {
+      modalRef.current.style.display = 'none'
+    }
+  }, [])
+
   // modal operation
   const openModal = () => {
     if (modalRef.current) {
@@ -112,11 +118,11 @@ const AllChats = ({
                   />
                 </div>
               </div>
-              <button className='btn mb-5' onClick={openModal}>
-                start new chat
-              </button>
             </NavLink>
           ))}
+          <button className='btn mb-5' onClick={openModal}>
+            start new chat
+          </button>
           <div className='w-full relative' ref={modalRef}>
             <div className='flex flex-col items-center'>
               <div className='w-full'>

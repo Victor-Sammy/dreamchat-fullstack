@@ -44,7 +44,7 @@ const NewRoom = () => {
   }
 
   return (
-    <div className='flex flex-col items-center gap-5 w-full bg-red-200'>
+    <div className='flex flex-col items-center gap-5 w-full bg-gray-100'>
       <h3 className='font-bold text-lg mb-2'>Create a chat room</h3>
       <form onSubmit={handleSend} className='flex flex-col items-center gap-5'>
         <input
