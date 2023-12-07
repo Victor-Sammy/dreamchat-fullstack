@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import PreviewBox from '../components/PreviewBox'
 import '../components/chatPreview.css'
@@ -69,12 +69,6 @@ const AllChats = ({
       window.removeEventListener('resize', handleResize)
     }
   }
-
-  useEffect(() => {
-    if (modalRef.current) {
-      modalRef.current.style.display = 'none'
-    }
-  })
 
   // modal operation
   const openModal = () => {
