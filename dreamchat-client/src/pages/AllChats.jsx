@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useRef } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import PreviewBox from '../components/PreviewBox'
 import '../components/chatPreview.css'
@@ -6,7 +7,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { UserAuth } from '../context/AuthContext'
 import axios from 'axios'
 import { chatroomsEmail, chatroomsId } from '../api/all-chats-api'
-//import NewRoom from '../components/NewRoom'
+import NewRoom from '../components/NewRoom'
 
 const AllChats = ({
   isButtonVisible,
@@ -21,6 +22,7 @@ const AllChats = ({
   const userEmail = currentUser ? currentUser?.user?.email : ''
 
   const queryClient = useQueryClient()
+  const modalRef = useRef(null)
 
   const {
     data: allChatroomsId,
@@ -68,6 +70,19 @@ const AllChats = ({
     }
   }
 
+  // modal operation
+  const openModal = () => {
+    if (modalRef.current) {
+      modalRef.current.style.display = 'block'
+    }
+  }
+
+  const closeModal = () => {
+    if (modalRef.current) {
+      modalRef.current.style.display = 'none'
+    }
+  }
+
   const renderToPage = () => {
     if (chatRoomsArray) {
       return (
@@ -100,52 +115,38 @@ const AllChats = ({
             </NavLink>
           ))}
           <div className=''>
-            <button
-              className='btn'
-              onClick={() => document.getElementById('my_modal_1').showModal()}
-            >
+            <button className='btn' onClick={openModal}>
               start new chat
             </button>
-            <dialog id='my_modal_1' className='modal'>
-              <div className='modal-box'>
-                <h3 className='font-bold text-lg'>Hello!</h3>
-                <p className='py-4'>
-                  Press ESC key or click the button below to close
-                </p>
-                <div className='modal-action'>
-                  <form method='dialog'>
-                    {/* if there is a button in form, it will close the modal */}
-                    <button className='btn'>Close</button>
-                  </form>
-                </div>
+            <div ref={modalRef}>
+              <div>
+                <NewRoom />
               </div>
-            </dialog>
+              <div className='modal-action'>
+                <button className='btn' onClick={closeModal}>
+                  Close
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       )
     } else {
       return (
         <div className=''>
-          <button
-            className='btn'
-            onClick={() => document.getElementById('my_modal_1').showModal()}
-          >
+          <button className='btn' onClick={openModal}>
             start new chat
           </button>
-          <dialog id='my_modal_1' className='modal'>
-            <div className='modal-box'>
-              <h3 className='font-bold text-lg'>Hello!</h3>
-              <p className='py-4'>
-                Press ESC key or click the button below to close
-              </p>
-              <div className='modal-action'>
-                <form method='dialog'>
-                  {/* if there is a button in form, it will close the modal */}
-                  <button className='btn'>Close</button>
-                </form>
-              </div>
+          <div ref={modalRef}>
+            <div>
+              <NewRoom />
             </div>
-          </dialog>
+            <div className='modal-action'>
+              <button className='btn' onClick={closeModal}>
+                Close
+              </button>
+            </div>
+          </div>
         </div>
       )
     }
