@@ -95,7 +95,7 @@ const AllChats = ({
   const renderToPage = () => {
     if (chatRoomsArray) {
       return (
-        <div>
+        <div className='relative'>
           {chatRoomsArray?.map((room) => (
             <NavLink key={room._id} to={`/allChats/${room._id}`}>
               <div
@@ -126,18 +126,20 @@ const AllChats = ({
           <button className='btn mb-5' onClick={openModal}>
             start new chat
           </button>
-          <div
-            className='xl:w-[90%] lg:w-[90%] md:w-full relative'
-            ref={modalRef}
-          >
-            <div className='flex flex-col items-center'>
-              <div className='w-full'>
-                <NewRoom />
-              </div>
-              <div className='modal-action rounded-full absolute top-0 right-0'>
-                <button className='btn' onClick={closeModal}>
-                  X
-                </button>
+          <div className='absolute top-[15%]'>
+            <div
+              className='xl:w-[90%] lg:w-[90%] md:w-full relative'
+              ref={modalRef}
+            >
+              <div className='flex flex-col items-center'>
+                <div className='w-full'>
+                  <NewRoom />
+                </div>
+                <div className='modal-action rounded-full absolute top-0 right-0'>
+                  <button className='btn' onClick={closeModal}>
+                    X
+                  </button>
+                </div>
               </div>
             </div>
           </div>
