@@ -8,7 +8,7 @@ const createRoom = asyncHandler(async (req, res) => {
   try {
     const sender = await User.findById(senderId)
 
-    const recipientUser = await User.findOne({
+    const recipientUser = await User.find({
       email: recipientEmail,
     })
 
