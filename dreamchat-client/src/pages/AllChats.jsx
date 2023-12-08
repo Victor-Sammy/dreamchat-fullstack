@@ -71,9 +71,7 @@ const AllChats = ({
   }
 
   useEffect(() => {
-    if (modalRef.current) {
-      modalRef.current.style.display = 'none'
-    }
+    modalRef.current.style.display = 'none'
   }, [])
 
   // modal operation
