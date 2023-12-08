@@ -23,7 +23,10 @@ const createNewRoom = async ({ formData }) => {
   try {
     const response = await fetch(`${baseURL}/room/start-chat`, {
       method: 'POST',
-      body: formData,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams(formData).toString(),
     })
     const data = await response.json()
     return data
