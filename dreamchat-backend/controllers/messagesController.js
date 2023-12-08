@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler')
 
 const ChatRoom = require('../models/chatRoomModel')
 const User = require('../models/userModel')
+const Message = require('../models/messageModel')
 
 const createRoom = asyncHandler(async (req, res) => {
   const { senderId, recipientEmail, text } = req.body
@@ -24,8 +25,17 @@ const createRoom = asyncHandler(async (req, res) => {
     })
 
     await newChat.save()
+
+    const newMessage = await new Message({
+      chatRoom: newChat._id,
+      from: senderId,
+      text,
+    })
+    await newMessage.save()
+
     res.status(201).send({ message: newChat })
     console.log(newChat)
+    console.log(newMessage)
   } catch (error) {
     res.status(500).json({ error: 'Chat initiation failed' })
   }
