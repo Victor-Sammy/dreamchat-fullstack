@@ -45,10 +45,10 @@ const NewRoom = () => {
 
   return (
     <div className='flex flex-col items-center gap-5 w-full bg-gray-100 border border-gray-200 rounded'>
-      <h3 className='font-bold text-lg mb-2'>Create a chat room</h3>
+      <h3 className='font-bold text-lg mb-2 mt-7'>Create a chat room</h3>
       <form
         onSubmit={handleSend}
-        className='flex flex-col items-center gap-5 w-full'
+        className='flex flex-col items-center gap-5 w-full px-5'
       >
         <input
           className='px-2 w-full py-2 rounded'
@@ -66,7 +66,7 @@ const NewRoom = () => {
           onChange={(e) => setText(e.target.value)}
         />
         <button
-          className='bg-red-400 text-white px-4 py-2 rounded'
+          className='bg-red-400 text-white px-4 py-2 mb-7 rounded'
           type='submit'
         >
           Send

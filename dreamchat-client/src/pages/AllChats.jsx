@@ -131,11 +131,11 @@ const AllChats = ({
           </button>
           <div className='absolute top-[250%] w-full'>
             <div
-              className='xl:w-[90%] lg:w-[90%] md:w-full xs:w-full relative my-10'
+              className='xl:w-[90%] lg:w-[90%] md:w-full xs:w-full relative'
               ref={modalRef}
             >
               <div className='flex flex-col items-center w-full'>
-                <div className='w-full px-6'>
+                <div className='w-full'>
                   <NewRoom />
                 </div>
                 <div className='modal-action bg-gray-800 border border-red-400 rounded-full absolute top-0 right-[7%]'>
