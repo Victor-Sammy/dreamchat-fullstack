@@ -71,7 +71,12 @@ const AllChats = ({
   }
 
   useEffect(() => {
-    modalRef.current.style.display = 'none'
+    const modalElement = modalRef.current
+
+    // Set the initial style when the component mounts
+    if (modalElement) {
+      modalElement.style.display = 'none'
+    }
   }, [])
 
   // modal operation
