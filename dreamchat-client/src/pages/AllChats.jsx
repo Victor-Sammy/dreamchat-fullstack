@@ -123,19 +123,22 @@ const AllChats = ({
               </div>
             </NavLink>
           ))}
-          <button className='btn mb-5' onClick={openModal}>
+          <button
+            className='btn mb-5 bg-gray-800 border border-red-400'
+            onClick={openModal}
+          >
             start new chat
           </button>
-          <div className='absolute top-[15%]'>
+          <div className='absolute top-[250%] w-full'>
             <div
-              className='xl:w-[90%] lg:w-[90%] md:w-full relative'
+              className='xl:w-[90%] lg:w-[90%] md:w-full xs:w-full relative'
               ref={modalRef}
             >
-              <div className='flex flex-col items-center'>
+              <div className='flex flex-col items-center w-full py-10'>
                 <div className='w-full'>
                   <NewRoom />
                 </div>
-                <div className='modal-action rounded-full absolute top-0 right-0'>
+                <div className='modal-action bg-gray-800 border border-red-400 rounded-full absolute top-0 right-[7%]'>
                   <button className='btn' onClick={closeModal}>
                     X
                   </button>
@@ -152,7 +155,7 @@ const AllChats = ({
             start new chat
           </button>
           <div
-            className='xl:w-[90%] lg:w-[90%] md:w-full relative'
+            className='xl:w-[90%] lg:w-[90%] md:w-full xs:w-full relative'
             ref={modalRef}
           >
             <div className='flex flex-col items-center'>
