@@ -52,7 +52,7 @@ const ChatRoom = ({
   return (
     <div
       ref={scrollRef}
-      className='chatroom absolute right-0 lg:w-[70%] md:w-full xs:w-full px-2'
+      className='chatroom absolute right-0 lg:w-[70%] md:w-full xs:w-full px-2 min-h-screen'
     >
       <div
         className='text-2xl text-bl fixed mt-20 lg:hidden md:block xs:block cursor-pointer
