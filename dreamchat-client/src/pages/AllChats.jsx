@@ -142,7 +142,7 @@ const AllChats = ({
               <div>{isLoading && 'Loading'}</div>
               <div>{isError && `Error fetching data`}</div>
               <div className='s-items fixed xs:w-[90%] md:w-[90%] lg:w-[30%]'>
-                <div className=''>
+                <div className='relative'>
                   {chatRoomsArray?.map((room) => (
                     <NavLink key={room._id} to={`/allChats/${room._id}`}>
                       <div
