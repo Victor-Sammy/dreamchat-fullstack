@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-//import { useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { NavLink, Outlet } from 'react-router-dom'
 import PreviewBox from '../components/PreviewBox'
 import '../components/chatPreview.css'
@@ -7,7 +7,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { UserAuth } from '../context/AuthContext'
 import axios from 'axios'
 import { chatroomsEmail, chatroomsId } from '../api/all-chats-api'
-//import NewRoom from '../components/NewRoom'
+import NewRoom from '../components/NewRoom'
 
 const AllChats = ({
   isButtonVisible,
@@ -22,7 +22,7 @@ const AllChats = ({
   const userEmail = currentUser ? currentUser?.user?.email : ''
 
   const queryClient = useQueryClient()
-  //const modalRef = useRef(null)
+  const modalRef = useRef(null)
 
   const {
     data: allChatroomsId,
@@ -79,53 +79,51 @@ const AllChats = ({
   //   }
   // }, [])
 
-  // modal operation
-  // const openModal = () => {
-  //   if (modalRef.current) {
-  //     modalRef.current.style.display = 'block'
-  //   }
-  // }
+  //modal operation
+  const openModal = () => {
+    if (modalRef.current) {
+      modalRef.current.style.display = 'block'
+    }
+  }
 
-  // const closeModal = () => {
-  //   if (modalRef.current) {
-  //     modalRef.current.style.display = 'none'
-  //   }
-  // }
+  const closeModal = () => {
+    if (modalRef.current) {
+      modalRef.current.style.display = 'none'
+    }
+  }
 
   const renderToPage = () => {
-    if (chatRoomsArray) {
-      return (
-        <div className=''>
-          {chatRoomsArray?.map((room) => (
-            <NavLink key={room._id} to={`/allChats/${room._id}`}>
-              <div
-                key={room?._id}
-                className='dashboard-item1 xl:w-[90%]  lg:w-[90%] md:w-full h-20 bg-gray-200 hover:bg-gray-300 mb-10 rounded-xl flex items-center justify-items-center overflow-hidden px-3 xs:w-full'
-                onClick={() => {
-                  handleClick()
-                  queryClient.invalidateQueries({
-                    queryKey: ['room', room?.id],
-                  })
-                  localStorage.setItem('recipient', room.to)
-                }}
-              >
-                <div className='flex gap-5 w-full'>
-                  <span className='rounded-full bg-orange-400 w-8 h-8 flex items-center justify-center text-xl'>
-                    {room?.to[0]}
-                  </span>
-                  <PreviewBox
-                    key={room._id}
-                    room={room}
-                    isSent={isSent}
-                    setIsSent={setIsSent}
-                  />
-                </div>
+    return (
+      <div className=''>
+        {chatRoomsArray?.map((room) => (
+          <NavLink key={room._id} to={`/allChats/${room._id}`}>
+            <div
+              key={room?._id}
+              className='dashboard-item1 xl:w-[90%]  lg:w-[90%] md:w-full h-20 bg-gray-200 hover:bg-gray-300 mb-10 rounded-xl flex items-center justify-items-center overflow-hidden px-3 xs:w-full'
+              onClick={() => {
+                handleClick()
+                queryClient.invalidateQueries({
+                  queryKey: ['room', room?.id],
+                })
+                localStorage.setItem('recipient', room.to)
+              }}
+            >
+              <div className='flex gap-5 w-full'>
+                <span className='rounded-full bg-orange-400 w-8 h-8 flex items-center justify-center text-xl'>
+                  {room?.to[0]}
+                </span>
+                <PreviewBox
+                  key={room._id}
+                  room={room}
+                  isSent={isSent}
+                  setIsSent={setIsSent}
+                />
               </div>
-            </NavLink>
-          ))}
-        </div>
-      )
-    }
+            </div>
+          </NavLink>
+        ))}
+      </div>
+    )
   }
 
   return (
@@ -145,13 +143,13 @@ const AllChats = ({
               <div>{isError && `Error fetching data`}</div>
               <div className='s-items fixed xs:w-[90%] md:w-[90%] lg:w-[30%]'>
                 <div>{renderToPage()}</div>
-                {/*<button
+                <button
                   className='btn mb-5 bg-gray-800 border border-red-400'
                   onClick={openModal}
                 >
                   start new chat
-                </button>*/}
-                {/*<div className=''>
+                </button>
+                <div className=''>
                   <div className='w-full z-30'>
                     <div
                       className='xl:w-[90%] lg:w-[90%] md:w-full xs:w-full relative'
@@ -169,7 +167,7 @@ const AllChats = ({
                       </div>
                     </div>
                   </div>
-                </div>*/}
+                </div>
               </div>
             </div>
           )}
