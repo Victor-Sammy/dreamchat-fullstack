@@ -148,7 +148,7 @@ const AllChats = ({
           </div>
         </div>
       )
-    } else if (chatRoomsArray.length === 0) {
+    } else if (!chatRoomsArray) {
       return (
         <div className='relative'>
           <button
