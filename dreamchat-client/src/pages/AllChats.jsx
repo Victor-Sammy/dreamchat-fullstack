@@ -148,25 +148,30 @@ const AllChats = ({
           </div>
         </div>
       )
-    } else {
+    } else if (chatRoomsArray.length === 0) {
       return (
-        <div>
-          <button className='btn mb-5' onClick={openModal}>
+        <div className='relative'>
+          <button
+            className='btn mb-5 bg-gray-800 border border-red-400'
+            onClick={openModal}
+          >
             start new chat
           </button>
-          <div
-            className='xl:w-[90%] lg:w-[90%] md:w-full xs:w-full relative'
-            ref={modalRef}
-          >
-            <div className='flex flex-col items-center'>
-              <div className='w-full'>
-                <NewRoom />
+          <div className='absolute top-[250%] w-full'>
+            <div
+              className='xl:w-[90%] lg:w-[90%] md:w-full xs:w-full relative'
+              ref={modalRef}
+            >
+              <div className='flex flex-col items-center w-full'>
+                <div className='w-full'>
+                  <NewRoom />
+                </div>
+                <div className='modal-action bg-gray-800 border border-red-400 rounded-full absolute top-0 right-[7%]'>
+                  <button className='btn' onClick={closeModal}>
+                    X
+                  </button>
+                </div>
               </div>
-            </div>
-            <div className='modal-action rounded-full absolute top-0 right-0'>
-              <button className='btn' onClick={closeModal}>
-                Close
-              </button>
             </div>
           </div>
         </div>
