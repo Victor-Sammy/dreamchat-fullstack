@@ -70,14 +70,14 @@ const AllChats = ({
     }
   }
 
-  useEffect(() => {
-    const modalElement = modalRef.current
+  // useEffect(() => {
+  //   const modalElement = modalRef.current
 
-    // Set the initial style when the component mounts
-    if (modalElement) {
-      modalElement.style.display = 'none'
-    }
-  }, [])
+  //   // Set the initial style when the component mounts
+  //   if (modalElement) {
+  //     modalElement.style.display = 'none'
+  //   }
+  // }, [])
 
   // modal operation
   const openModal = () => {
@@ -129,7 +129,7 @@ const AllChats = ({
           >
             start new chat
           </button>
-          <div className='absolute top-[250%] w-full'>
+          <div className='absolute top-[250%] w-full z-30'>
             <div
               className='xl:w-[90%] lg:w-[90%] md:w-full xs:w-full relative'
               ref={modalRef}
@@ -157,7 +157,7 @@ const AllChats = ({
           >
             start new chat
           </button>
-          <div className='absolute top-[250%] w-full'>
+          <div className='absolute top-[250%] w-full z-30'>
             <div
               className='xl:w-[90%] lg:w-[90%] md:w-full xs:w-full relative'
               ref={modalRef}
