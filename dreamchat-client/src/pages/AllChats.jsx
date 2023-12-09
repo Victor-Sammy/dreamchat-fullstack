@@ -95,7 +95,7 @@ const AllChats = ({
   const renderToPage = () => {
     if (chatRoomsArray) {
       return (
-        <div className='relative'>
+        <div className=''>
           {chatRoomsArray?.map((room) => (
             <NavLink key={room._id} to={`/allChats/${room._id}`}>
               <div
