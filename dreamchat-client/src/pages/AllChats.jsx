@@ -151,8 +151,8 @@ const AllChats = ({
                 >
                   start new chat
                 </button>
-                <div className='relative'>
-                  <div className='absolute top-[250%] w-full z-30'>
+                <div className=''>
+                  <div className='w-full z-30'>
                     <div
                       className='xl:w-[90%] lg:w-[90%] md:w-full xs:w-full relative'
                       ref={modalRef}
